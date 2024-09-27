@@ -1,7 +1,8 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useReducer } from "react";
 import "./App.css";
+
+import AddTask from "./AddTask";
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -9,6 +10,7 @@ function App() {
 	return (
 		<>
 			<h1>Create ToDo List</h1>
+			<AddTask />
 			<div>
 				{" "}
 				generate list of todo items
