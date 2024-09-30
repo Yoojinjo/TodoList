@@ -17,3 +17,7 @@ button {
 button {
 	cursor: pointer;
 }
+
+li {
+	display: flex;
+}

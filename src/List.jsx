@@ -1,10 +1,13 @@
 function List({ tasks }) {
 	return (
-		<div>
+		<ul>
 			{tasks.map((task, index) => (
-				<p key={index}>{task.text}</p>
+				<li key={index}>
+					<input type="checkbox" />
+					<p> {task.text}</p>
+				</li>
 			))}
-		</div>
+		</ul>
 	);
 }
 export default List;
