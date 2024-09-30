@@ -1,8 +1,29 @@
+import React, { useState } from "react";
 import Button from "./Button";
+import TextField from "./TextField";
 
-function AddTask() {
-	const name = "AddTask";
-	return <Button name={name} />;
+function AddTask({ addTask }) {
+	const [task, setTask] = useState("");
+
+	const handleInput = (e) => {
+		setTask(e.target.value); //add task
+	};
+	const handleAddTask = () => {
+		console.log("added task", task);
+		addTask({ text: task });
+		setTask(""); //clear input after add
+	};
+
+	return (
+		<>
+			<TextField
+				placeholder={"Add Task"}
+				value={task}
+				onChange={handleInput}
+			/>
+			<Button buttonName={"AddTask"} onClick={handleAddTask} />
+		</>
+	);
 }
 
 export default AddTask;
