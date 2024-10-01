@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function List({ tasks }) {
+function List({ tasks, handleDelete }) {
 	const [checked, setChecked] = useState({});
 
 	// toggle checkbox state
@@ -22,7 +22,11 @@ function List({ tasks }) {
 					/>
 					<p> {task.text}</p>
 					{/* add delete button if checked box */}
-					{checked[index] && <button>Delete</button>}
+					{checked[index] && (
+						<button onClick={() => handleDelete(index)}>
+							Delete
+						</button>
+					)}
 				</li>
 			))}
 		</ul>
