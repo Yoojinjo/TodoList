@@ -56,7 +56,6 @@ function List({ tasks, handleDelete, handleUpdate }) {
 						<p>{task.text}</p>
 					)}
 					<button
-						disabled={checked[task.id]}
 						hidden={checked[task.id]}
 						onClick={() => handleEditClick(task.id, task.text)}
 					>
