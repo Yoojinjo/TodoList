@@ -57,17 +57,20 @@ function List({ tasks, handleDelete, handleUpdate }) {
 					)}
 					<button
 						disabled={checked[task.id]}
+						hidden={checked[task.id]}
 						onClick={() => handleEditClick(task.id, task.text)}
 					>
 						Edit
 					</button>
-					<button
-						disabled={!editText}
-						onClick={() => saveEdit(task.id)}
-					>
-						Save
-					</button>
-
+					{/* Show Save button only when editing the current task */}
+					{editID === task.id && (
+						<button
+							disabled={!editText}
+							onClick={() => saveEdit(task.id)}
+						>
+							Save
+						</button>
+					)}
 					{/* disable delete button if not checked box */}
 					<button
 						disabled={!checked[task.id]}
