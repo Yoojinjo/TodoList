@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 function List({ tasks, handleDelete }) {
 	const [checked, setChecked] = useState({});
+	const [editIndex, setEditIndex] = useState(null); //  editedtask status
+	const [editText, setEditText] = useState(""); // Store text for editing
 
 	// toggle checkbox state
 	const handleCheckbox = (taskId) => {
@@ -9,6 +11,12 @@ function List({ tasks, handleDelete }) {
 			...prev,
 			[taskId]: !prev[taskId],
 		}));
+	};
+
+	// Handle edit button click
+	const handleEditClick = (taskId, taskText) => {
+		setEditIndex(taskId); // Set the task ID to edit
+		setEditText(taskText); // Set the text to be edited
 	};
 
 	// i don't think this is actually needed anymore, since not using index as key
@@ -30,8 +38,22 @@ function List({ tasks, handleDelete }) {
 						onChange={() => handleCheckbox(task.id)}
 						checked={checked[task.id] || false}
 					/>
-					<p> {task.text}</p>
-					<button>Edit</button>
+
+					{/* Render text input if editing, otherwise render task text */}
+					{editIndex === task.id ? (
+						<input
+							type="text"
+							value={editText}
+							onChange={(e) => setEditText(e.target.value)}
+						/>
+					) : (
+						<p>{task.text}</p>
+					)}
+
+					<button onClick={() => handleEditClick(task.id, task.text)}>
+						Edit
+					</button>
+
 					<button>Save</button>
 
 					{/* add delete button if checked box */}
