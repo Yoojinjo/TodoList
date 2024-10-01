@@ -31,6 +31,9 @@ function List({ tasks, handleDelete }) {
 						checked={checked[task.id] || false}
 					/>
 					<p> {task.text}</p>
+					<button>Edit</button>
+					<button>Save</button>
+
 					{/* add delete button if checked box */}
 					{checked[task.id] && (
 						<button onClick={() => handleDelete(task.id)}>
