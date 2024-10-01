@@ -9,9 +9,11 @@ function AddTask({ addTask }) {
 		setTask(e.target.value); //add task
 	};
 	const handleAddTask = () => {
-		console.log("added task", task);
-		addTask(task);
-		setTask(""); //clear input after add
+		if (task.trim()) {
+			console.log("added task", task);
+			addTask(task);
+			setTask(""); //clear input after add
+		}
 	};
 
 	return (
