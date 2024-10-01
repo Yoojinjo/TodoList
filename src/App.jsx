@@ -15,9 +15,18 @@ function App() {
 	};
 
 	// Delete task filter method creates new array  taking out task with id property
-
 	const handleDelete = (taskID) => {
 		setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskID));
+	};
+
+	// change state of tasks after edit a task
+	const handleEdit = (taskID, newText) => {
+		setTasks(
+			(prevTasks) =>
+				prevTasks.map((task) =>
+					task.id === taskID ? { ...task, text: newText } : task
+				) // spread operator of task, then if current task ID matches  ID of task that needs to be edited, then override text with newText. If not match return task(no change)
+		);
 	};
 
 	return (

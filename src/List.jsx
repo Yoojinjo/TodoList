@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function List({ tasks, handleDelete }) {
 	const [checked, setChecked] = useState({});
-	const [editID, setEditID] = useState(null); //  editedtask status
+	const [editID, setEditID] = useState(null); //  ID of task being edited
 	const [editText, setEditText] = useState(""); // Store text for editing
 
 	// toggle checkbox state
