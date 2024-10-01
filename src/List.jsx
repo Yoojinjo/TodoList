@@ -11,15 +11,15 @@ function List({ tasks, handleDelete }) {
 		}));
 	};
 
-	// delete task
-	const handleDeleteCheckBox = (taskId) => {
-		setChecked((prev) => {
-			const updatedCheck = { ...prev };
-			delete updatedCheck[taskId]; //remove deleted item checked
-			return updatedCheck;
-		});
-		handleDelete(taskId); // delete task after remove checkbox
-	};
+	// i don't think this is actually needed anymore, since not using index as key
+	// const handleDeleteCheckBox = (taskId) => {
+	// 	setChecked((prev) => {
+	// 		const updatedCheck = { ...prev };
+	// 		delete updatedCheck[taskId]; //remove deleted item checked
+	// 		return updatedCheck;
+	// 	});
+	// 	handleDelete(taskId); // delete task after remove checkbox
+	// };
 
 	return (
 		<ul>
@@ -33,7 +33,7 @@ function List({ tasks, handleDelete }) {
 					<p> {task.text}</p>
 					{/* add delete button if checked box */}
 					{checked[task.id] && (
-						<button onClick={() => handleDeleteCheckBox(task.id)}>
+						<button onClick={() => handleDelete(task.id)}>
 							Delete
 						</button>
 					)}
