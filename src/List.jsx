@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function List({ tasks, handleDelete }) {
+function List({ tasks, handleDelete, handleUpdate }) {
 	const [checked, setChecked] = useState({});
 	const [editID, setEditID] = useState(null); //  ID of task being edited
 	const [editText, setEditText] = useState(""); // Store text for editing
@@ -17,6 +17,13 @@ function List({ tasks, handleDelete }) {
 	const handleEditClick = (taskId, taskText) => {
 		setEditID(taskId); // Set the task ID to edit
 		setEditText(taskText); // Set the text to be edited
+	};
+
+	// Save edited text
+	const saveEdit = (taskId) => {
+		handleUpdate(taskId, editText); // update function from App
+		setEditID(null); // Reset edit ID
+		setEditText(""); // Clear the edit text
 	};
 
 	// i don't think this is actually needed anymore, since not using index as key
@@ -54,7 +61,7 @@ function List({ tasks, handleDelete }) {
 						Edit
 					</button>
 
-					<button>Save</button>
+					<button onClick={() => saveEdit(task.id)}>Save</button>
 
 					{/* add delete button if checked box */}
 					{checked[task.id] && (

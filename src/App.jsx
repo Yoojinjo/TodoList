@@ -20,7 +20,7 @@ function App() {
 	};
 
 	// change state of tasks after edit a task
-	const handleEdit = (taskID, newText) => {
+	const handleUpdate = (taskID, newText) => {
 		setTasks(
 			(prevTasks) =>
 				prevTasks.map((task) =>
@@ -34,7 +34,11 @@ function App() {
 			<h1>Create ToDo List</h1>
 
 			<div className="Tasks">
-				<List tasks={tasks} handleDelete={handleDelete} />
+				<List
+					tasks={tasks}
+					handleDelete={handleDelete}
+					handleUpdate={handleUpdate}
+				/>
 			</div>
 			<AddTask addTask={addTask} />
 		</>
