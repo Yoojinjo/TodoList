@@ -9,15 +9,35 @@ input,
 button {
 	border: solid black 1px;
 	padding: 5px;
-	height: auto;
 	border-radius: 10px;
 	font-size: medium;
+	transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
 button {
 	cursor: pointer;
+	background-color: #4f9ffa;
+	color: white;
+}
+
+button:hover {
+	background-color: #1c84f3; /* different color on hover */
+}
+
+button:disabled {
+	background-color: #a9a9a9; /* Grey color for disabled buttons */
+	color: #fff; /* Optional: Text color for disabled button */
+	cursor: not-allowed; /* Change cursor to indicate it's not clickable */
 }
 
 li {
 	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1rem 0; /* Add space between list items */
+}
+
+input[type="text"] {
+	flex-grow: 1; /* Allow text input to grow and take available space */
+	margin-right: 10px;
 }

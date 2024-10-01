@@ -31,7 +31,7 @@ function App() {
 
 	return (
 		<>
-			<h1>Create ToDo List</h1>
+			<h1>React ToDo List</h1>
 
 			<div className="Tasks">
 				<List
