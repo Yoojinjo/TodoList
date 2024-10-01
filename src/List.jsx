@@ -45,7 +45,6 @@ function List({ tasks, handleDelete, handleUpdate }) {
 						onChange={() => handleCheckbox(task.id)}
 						checked={checked[task.id] || false}
 					/>
-
 					{/* Render text input if editing, otherwise render task text */}
 					{editID === task.id ? (
 						<input
@@ -56,14 +55,12 @@ function List({ tasks, handleDelete, handleUpdate }) {
 					) : (
 						<p>{task.text}</p>
 					)}
-
 					<button
 						disabled={checked[task.id]}
 						onClick={() => handleEditClick(task.id, task.text)}
 					>
 						Edit
 					</button>
-
 					<button
 						disabled={!editText}
 						onClick={() => saveEdit(task.id)}
@@ -71,12 +68,13 @@ function List({ tasks, handleDelete, handleUpdate }) {
 						Save
 					</button>
 
-					{/* add delete button if checked box */}
-					{checked[task.id] && (
-						<button onClick={() => handleDelete(task.id)}>
-							Delete
-						</button>
-					)}
+					{/* disable delete button if not checked box */}
+					<button
+						disabled={!checked[task.id]}
+						onClick={() => handleDelete(task.id)}
+					>
+						Delete
+					</button>
 				</li>
 			))}
 		</ul>
