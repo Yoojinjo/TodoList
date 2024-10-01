@@ -49,33 +49,65 @@ const initialTasks = [
 	},
 ];
 
+//Reducer function for practice
+// Define the reducer function
+const taskReducer = (state, action) => {
+	switch (action.type) {
+		case "ADD_TASK":
+			return [{ id: uniqueID(), text: action.payload }, ...state]; // add new task
+		case "DELETE_TASK":
+			return state.filter((task) => task.id !== action.payload); // delete task by ID
+		case "UPDATE_TASK":
+			return state.map((task) =>
+				task.id === action.payload.id
+					? { ...task, text: action.payload.text }
+					: task
+			); // update text
+		default:
+			return state; // Return current state if action is not recognized
+	}
+};
+
 function App() {
-	const [tasks, setTasks] = useState([]);
+	// const [tasks, setTasks] = useState([]);
+	const [tasks, dispatch] = useReducer(taskReducer, initialTasks);
 
 	// Populate tasks one time
-	useEffect(() => {
-		setTasks(initialTasks); // Set the initial tasks
-	}, []);
+	// useEffect(() => {
+	// 	setTasks(initialTasks); // Set the initial tasks
+	// }, []);
 
 	const addTask = (task) => {
-		const newTask = { id: uniqueID(), text: task }; //add a unique ID
-		setTasks([newTask, ...tasks]);
+		dispatch({ type: "ADD_TASK", payload: task }); // Dispatch action to add task
+		// old setState code
+		// const newTask = { id: uniqueID(), text: task }; //add a unique ID
+		// setTasks([newTask, ...tasks]);
 	};
 
 	// Delete task filter method creates new array  taking out task with id property
 	const handleDelete = (taskID) => {
-		setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskID));
+		dispatch({ type: "DELETE_TASK", payload: taskID });
+		// old setState code
+		// setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskID));
 	};
 
-	// change state of tasks after edit a task
 	const handleUpdate = (taskID, newText) => {
-		setTasks(
-			(prevTasks) =>
-				prevTasks.map((task) =>
-					task.id === taskID ? { ...task, text: newText } : task
-				) // spread operator of task, then if current task ID matches  ID of task that needs to be edited, then override text with newText. If not match return task(no change)
-		);
+		dispatch({
+			type: "UPDATE_TASK",
+			payload: { id: taskID, text: newText },
+		}); // Dispatch action to update task
 	};
+
+	// old setState code
+	// // change state of tasks after edit a task
+	// const handleUpdate = (taskID, newText) => {
+	// 	setTasks(
+	// 		(prevTasks) =>
+	// 			prevTasks.map((task) =>
+	// 				task.id === taskID ? { ...task, text: newText } : task
+	// 			) // spread operator of task, then if current task ID matches  ID of task that needs to be edited, then override text with newText. If not match return task(no change)
+	// 	);
+	// };
 
 	return (
 		<>
