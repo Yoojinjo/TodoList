@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function List({ tasks, handleDelete }) {
 	const [checked, setChecked] = useState({});
-	const [editIndex, setEditIndex] = useState(null); //  editedtask status
+	const [editID, setEditID] = useState(null); //  editedtask status
 	const [editText, setEditText] = useState(""); // Store text for editing
 
 	// toggle checkbox state
@@ -15,7 +15,7 @@ function List({ tasks, handleDelete }) {
 
 	// Handle edit button click
 	const handleEditClick = (taskId, taskText) => {
-		setEditIndex(taskId); // Set the task ID to edit
+		setEditID(taskId); // Set the task ID to edit
 		setEditText(taskText); // Set the text to be edited
 	};
 
@@ -40,7 +40,7 @@ function List({ tasks, handleDelete }) {
 					/>
 
 					{/* Render text input if editing, otherwise render task text */}
-					{editIndex === task.id ? (
+					{editID === task.id ? (
 						<input
 							type="text"
 							value={editText}
