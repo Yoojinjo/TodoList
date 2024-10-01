@@ -61,7 +61,12 @@ function List({ tasks, handleDelete, handleUpdate }) {
 						Edit
 					</button>
 
-					<button onClick={() => saveEdit(task.id)}>Save</button>
+					<button
+						disabled={!editText}
+						onClick={() => saveEdit(task.id)}
+					>
+						Save
+					</button>
 
 					{/* add delete button if checked box */}
 					{checked[task.id] && (
