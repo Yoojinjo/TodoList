@@ -10,7 +10,7 @@ function AddTask({ addTask }) {
 	};
 	const handleAddTask = () => {
 		console.log("added task", task);
-		addTask({ text: task });
+		addTask(task);
 		setTask(""); //clear input after add
 	};
 

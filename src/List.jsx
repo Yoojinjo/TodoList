@@ -4,36 +4,36 @@ function List({ tasks, handleDelete }) {
 	const [checked, setChecked] = useState({});
 
 	// toggle checkbox state
-	const handleCheckbox = (index) => {
+	const handleCheckbox = (taskId) => {
 		setChecked((prev) => ({
 			...prev,
-			[index]: !prev[index],
+			[taskId]: !prev[taskId],
 		}));
 	};
 
-	// next list item inherits checkbox of deleted item
-	const handleDeleteCheckBox = (index) => {
+	// delete task
+	const handleDeleteCheckBox = (taskId) => {
 		setChecked((prev) => {
 			const updatedCheck = { ...prev };
-			delete updatedCheck[index]; //remove deleted item checked
+			delete updatedCheck[taskId]; //remove deleted item checked
 			return updatedCheck;
 		});
-		handleDelete(index); // delete task after remove checkbox
+		handleDelete(taskId); // delete task after remove checkbox
 	};
 
 	return (
 		<ul>
-			{tasks.map((task, index) => (
-				<li key={index}>
+			{tasks.map((task) => (
+				<li key={task.id}>
 					<input
 						type="checkbox"
-						onChange={() => handleCheckbox(index)}
-						checked={checked[index] || false}
+						onChange={() => handleCheckbox(task.id)}
+						checked={checked[task.id] || false}
 					/>
 					<p> {task.text}</p>
 					{/* add delete button if checked box */}
-					{checked[index] && (
-						<button onClick={() => handleDeleteCheckBox(index)}>
+					{checked[task.id] && (
+						<button onClick={() => handleDeleteCheckBox(task.id)}>
 							Delete
 						</button>
 					)}

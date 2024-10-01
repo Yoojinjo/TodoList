@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useReducer } from "react";
 import "./App.css";
+import { v4 as uniqueID } from "uuid"; // import UUID library for unique ids
 
 import AddTask from "./AddTask";
 import List from "./List";
@@ -9,13 +10,14 @@ function App() {
 	const [tasks, setTasks] = useState([]);
 
 	const addTask = (task) => {
-		setTasks([task, ...tasks]);
+		const newTask = { id: uniqueID(), text: task }; //add a unique ID
+		setTasks([newTask, ...tasks]);
 	};
 
-	// Delete task filter method creates new array  i !== index, keeps only tasks whose index (i) is not equal to the index of the task we want to delete.
+	// Delete task filter method creates new array  taking out task with id property
 
-	const handleDelete = (index) => {
-		setTasks((prevTasks) => prevTasks.filter((_, i) => i !== index));
+	const handleDelete = (taskID) => {
+		setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskID));
 	};
 
 	return (
